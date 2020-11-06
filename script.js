@@ -4,30 +4,28 @@
        },function(){
            $(this).css({width:'200px'});
        });
-       
-       $('.a,.b,.c,.d,.e,.f,.g,.h').hover(function() {
+       $('.box1,.box2,.box3,.box4,.box5,.box6,.box7,.box8').hover(function() {
            $(this).css({width:'340px'});
        },function(){
            $(this).css({width:'250px'});
        });
         
-       $('.a,.c,.f,.h').hover(function() {
+       $('.box1,.box3,.box6,.box8').hover(function() {
            $(this).css('background','lightyellow');
        },function(){
            $(this).css('background','');
        });
         
-       $('.b,.d,.e,.g').hover(function() {
+       $('.box2,.box4,.box5,.box7').hover(function() {
            $(this).css('background','lightcyan');
        },function(){
            $(this).css('background','');
-       }); 
-        
-        $('.a,.b,.c,.d,.e,.f,.g,.h').hover(function() {
-           var text = $('p').html();
-           $(this).text(text);
+       });     
+        $('.box1,.box2,.box3,.box4,.box5,.box6,.box7,.box8').hover(function() {
+           $(this).children('p').show();
+           $(this).children('h2').hide();
         },function(){
-           var title = $('h2').html();
-           $(this).text(title);
+           $(this).children('h2').show();
+           $(this).children('p').hide();
         }); 
     });

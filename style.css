@@ -34,13 +34,10 @@
     }
 
     main {
-       padding-left:100px;
-       padding-right:100px;
-       margin-top:30px;
-       margin-bottom:30px;
+       padding:30px 100px;
     }
     
-    .a,.b,.c,.d,.e,.f,.g,.h {
+    .box1,.box2,.box3,.box4,.box5,.box6,.box7,.box8 {
         float:left;
         width:250px;
         height:200px;
@@ -48,18 +45,24 @@
         text-align: center;
         line-height:170px;
         margin:5px;
+        position: relative;
     }
 
-    .a,.c,.f,.h {
+    .box1,.box3,.box6,.box8 {
         background-color: lightcoral; 
     }
 
-    .b,.d,.e,.g {
+    .box2,.box4,.box5,.box7 {
         background-color: yellowgreen;
     }
 
     p {
         display:none;
+        line-height: 40px;
+        position: absolute;
+        top:40%;
+        left:45%;
+        transform:translate(-40%,-45%);
     }
 
     footer {
