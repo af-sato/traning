@@ -1,31 +1,33 @@
     $(function(){
-       $('.fot').hover(function(){
+       $('.phot').hover(function(){
            $(this).css({width:'300px'});
        },function(){
            $(this).css({width:'200px'});
        });
        
-       $('.a,.b').hover(function() {
+       $('.a,.b,.c,.d,.e,.f,.g,.h').hover(function() {
            $(this).css({width:'340px'});
        },function(){
            $(this).css({width:'250px'});
        });
         
-       $('.a').hover(function() {
+       $('.a,.c,.f,.h').hover(function() {
            $(this).css('background','lightyellow');
        },function(){
            $(this).css('background','');
        });
         
-       $('.b').hover(function() {
+       $('.b,.d,.e,.g').hover(function() {
            $(this).css('background','lightcyan');
        },function(){
            $(this).css('background','');
        }); 
         
-       $('.a,.b').hover(function() {
-           $('this').fadeOut();
-       },function(){
-           $('this').fadeIn();
-       }); 
+        $('.a,.b,.c,.d,.e,.f,.g,.h').hover(function() {
+           var text = $('p').html();
+           $(this).text(text);
+        },function(){
+           var title = $('h2').html();
+           $(this).text(title);
+        }); 
     });
