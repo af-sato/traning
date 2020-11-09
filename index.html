@@ -1,0 +1,91 @@
+    <!DOCTYPE html>
+    <html lang="ja">
+        <head>
+            <meta charset="utf-8">
+            <title>My profile</title>
+            <link rel="stylesheet" href="style.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+            <script>
+              $(document).ready(function(){
+                $('.slider').bxSlider({
+                    auto:true,
+                    mode:'fade',
+                    speed:1000,
+                    slideWidth:800
+                });
+              });
+            </script>
+        </head>
+
+        <body>
+            <div id="wrapper">
+                <header> 
+                    <h1>自己紹介</h1>
+                </header>
+            
+                <main>
+                    <div class="phots">
+                        <div><img class="phot" src="img/IMG_E9626.JPG"></div>
+                        <div><img class="phot" src="img/DSC00234.JPG"></div>
+                        <div><img class="phot" src="img/IMG_E9815.JPG"></div>
+                    </div>
+
+                    <div class="slider">
+                      <div><img src="img/kyudou.png"></div>
+                      <div><img src="img/camera.png"></div>
+                      <div><img src="img/karaoke.png"></div>
+                    </div>
+
+                    <div class="box">
+                        <div class="box1">
+                            <h2>出身</h2> 
+                            <p>千葉県船橋市<br>※７歳まで三重県</p>
+                        </div>
+
+                        <div class="box2">
+                            <h2>家族</h2>
+                            <p>父、母、兄2人</p>
+                        </div>
+
+                        <div class="box3">
+                            <h2>大学・学部/高校</h2>
+                            <p>学習院大学経済学部<br>芝浦工業大学柏高等学校</p>
+                        </div>
+
+                        <div class="box4">
+                            <h2>趣味</h2>
+                            <p>写真を撮ること<br>お笑いを観ること<br>音楽を聴くこと<br>歌うこと</p>
+                        </div>
+
+                        <div class="box5">
+                            <h2>部活動</h2>
+                            <p>写真部</p>
+                        </div>
+
+                        <div class="box6">
+                            <h2>特技</h2>
+                            <p>ピアノを弾くこと</p>
+                        </div>
+
+                        <div class="box7">
+                            <h2>こだわり</h2>
+                            <p>相手を思いやる気持ちを忘れないこと</p>
+                        </div>
+
+                        <div class="box8">
+                            <h2>最後に一言！</h2>
+                            <p>新しいことに<br>どんどん挑戦し<br>自分の幅を広げていきたいと思います！</p>
+                        </div>       
+                    </div>
+                </main>
+                
+                <footer>
+                </footer>
+            </div>
+            
+            <script type="text/javascript" src="script.js"></script>
+        </body>
+    </html>
