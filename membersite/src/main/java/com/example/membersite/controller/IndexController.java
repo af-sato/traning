@@ -29,11 +29,31 @@ public class IndexController {
 			@ModelAttribute("userForm") UserForm form,
 			Model model) {
 		
-		List<User> user = userRepos.findByIdAndPassword(form.getId(), form.getPassword());
-		if(user.size() > 0) {
-			model.addAttribute("name", user.get(0).getName());
+		List<User> users = userRepos.findByIdAndPassword(form.getId(), form.getPassword());
+		if(users.size() > 0) {
+			User user = users.get(0);
+			model.addAttribute("name", user.getName());
 			model.addAttribute("user", user);
 		} 
+		if(users.size() == 0){
+			//TODO IDやpasswordが入力されていないor正しくないときはログイン画面のままにする
+		}
+		
+		//この２文はDB検索がうまくいっている確認する文なので、のちに削除します
+//		User user = users.get(0);
+//		model.addAttribute("name", user.getName());
+		
 		return "my_page";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout() {
+		return "index";
+	}
+	
+	@RequestMapping("/delete")
+	public String delete() {
+		//TODO DBからユーザ情報を削除
+		return "index";
 	}
 }

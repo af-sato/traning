@@ -11,10 +11,9 @@
 </header>
 
 <form name ="loginForm" method="post" action="/membersite/login" th:action="@{/membersite/login}">
-	<label>ユーザーID:<input type="text" name="userName" /></label><br>
-	<label>パスワード:<input type="password" name="password" /></label><br>
+	<label>ユーザーID:</label><input type="text" name="userName" /><br>
+	<label>パスワード:</label><input type="password" name="password" /><br>
 	<button type="submit">ログイン</button><br>
-	<!-- TODO 新規登録画面へのリンク先を記入 -->
 	<a href="/membersite/user/" th:href="@{/membersite/user/}">新規登録</a>
 </form>
 

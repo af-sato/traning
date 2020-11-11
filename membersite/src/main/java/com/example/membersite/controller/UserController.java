@@ -14,7 +14,7 @@ public class UserController {
 	
 	@RequestMapping("/register")
 	public String register() {
-		
+		//TODO 登録ボタン押下でユーザ情報をDBに登録
 		return "index";
 	}
 }
