@@ -1,9 +1,15 @@
-package com.example.membersite.model.form;
+package com.example.membersite.model.session;
 
 import java.io.Serializable;
 
-public class UserForm implements Serializable {
-	private static final long serialVersionUID = 1178009370433571194L;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope(value="session", proxyMode=ScopedProxyMode.TARGET_CLASS)
+public class LoginSession implements Serializable {
+	private static final long serialVersionUID = -2203923331056414606L;
 	
 	private String id;
 	private String password;
