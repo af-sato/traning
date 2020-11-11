@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>ログイン画面 | Memberサイト</title>
+</head>
+<body>
+
+<header>
+ <p>ログイン</p>
+</header>
+
+<form name ="loginForm" method="post" action="/login" th:action="@{/login}">
+	<label>ユーザーID:<input type="text" name="userName" /></label><br>
+	<label>パスワード:<input type="password" name="password" /></label><br>
+	<button type="submit">ログイン</button><br>
+	<!-- TODO 新規登録画面へのリンク先を記入 -->
+	<a href="/membersite/user/" th:href="@{/membersite/user/}">新規登録</a>
+</form>
+
+</body>
+</html>
