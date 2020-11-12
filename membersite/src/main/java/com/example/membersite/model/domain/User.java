@@ -1,33 +1,17 @@
-package com.example.membersite.model.entity;
+package com.example.membersite.model.domain;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="user")
 public class User {
 
-	@Id
-	@Column(name="id")
-//	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String id;
 	
-	@Column(name="password")
 	private String password;
 	
-	@Column(name="name")
 	private String name;
 	
-	@Column(name="birthday")
 	private Date birthday;
 	
-	@Column(name="mailaddress")
 	private String mailaddress;
 
 	public String getId() {

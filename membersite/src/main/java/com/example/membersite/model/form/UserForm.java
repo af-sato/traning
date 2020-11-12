@@ -7,7 +7,6 @@ public class UserForm implements Serializable {
 	
 	private String id;
 	private String password;
-	private boolean logined;
 	
 	public String getId() {
 		return id;
@@ -20,11 +19,5 @@ public class UserForm implements Serializable {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	public boolean isLogined() {
-		return logined;
-	}
-	public void setLogined(boolean logined) {
-		this.logined = logined;
 	}
 }

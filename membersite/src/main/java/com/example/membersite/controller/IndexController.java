@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.membersite.model.dao.UserRepository;
-import com.example.membersite.model.entity.User;
+import com.example.membersite.model.domain.User;
 import com.example.membersite.model.form.UserForm;
+import com.example.membersite.model.mapper.UserMapper;
 import com.example.membersite.model.session.LoginSession;
 
 @Controller
@@ -22,14 +22,18 @@ public class IndexController {
 	private LoginSession loginSession;
 	
 	@Autowired
-	UserRepository userRepos;
+	private UserMapper userMapper;
 	
 	@RequestMapping("/")
-	public String index() {
+	public String index(Model model) {
 		if(loginSession.isLogined()) {
-			//TODO 会員画面へ
+			//TODO　ログインしてるユーザーの情報が表示されるようにする
+			model.addAttribute("name", loginSession.getName());
+			model.addAttribute("user", loginSession);
+			return "my_page";
+		} else {
+			return "index";
 		}
-		return "index";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -37,37 +41,33 @@ public class IndexController {
 			@ModelAttribute("userForm") UserForm form,
 			Model model) {
 		
-		List<User> users = userRepos.findByIdAndPassword(form.getId(), form.getPassword());
+		List<User> users = userMapper.findByIdAndPassword(form.getId(), form.getPassword());
 		if(users.size() > 0) {
 			User user = users.get(0);
 			loginSession.setId(user.getId());
-			loginSession.setPassword(user.getPassword());
-			model.addAttribute("name", user.getName());
-			model.addAttribute("user", user);
-		} 
-		if(users.size() == 0){
-			loginSession.setId(null);
-			loginSession.setPassword(null);
-			//TODO IDやpasswordが入力されていないor正しくないときはログイン画面のままにする
+			loginSession.setName(user.getName());
+			loginSession.setBirthday(user.getBirthday());
+			loginSession.setMailaddress(user.getMailaddress());
+			loginSession.setLogined(true);
+			model.addAttribute("name", loginSession.getName());
+			model.addAttribute("user", loginSession);
+			return "my_page";
+		} else {
+			return "index";
 		}
-		
-		//この２文はDB検索がうまくいっている確認する文なので、のちに削除します
-//		User user = users.get(0);
-//		model.addAttribute("name", user.getName());
-		
-		return "my_page";
 	}
 	
 	@RequestMapping("/logout")
 	public String logout() {
-		loginSession.setId(null);
-		loginSession.setPassword(null);
+		loginSession.setLogined(false);
 		return "index";
 	}
 	
 	@RequestMapping("/delete")
 	public String delete() {
 		//TODO DBからユーザ情報を削除
+		userMapper.deletedById(loginSession.getId());
 		return "index";
 	}
+	
 }
