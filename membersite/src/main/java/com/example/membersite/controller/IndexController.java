@@ -28,7 +28,6 @@ public class IndexController {
 	public String index(Model model) {
 		if(loginSession.isLogined()) {
 			//TODO　ログインしてるユーザーの情報が表示されるようにする
-			model.addAttribute("name", loginSession.getName());
 			model.addAttribute("user", loginSession);
 			return "my_page";
 		} else {
@@ -46,10 +45,9 @@ public class IndexController {
 			User user = users.get(0);
 			loginSession.setId(user.getId());
 			loginSession.setName(user.getName());
-			loginSession.setBirthday(user.getBirthday());
+			loginSession.setAge(user.getAge());
 			loginSession.setMailaddress(user.getMailaddress());
 			loginSession.setLogined(true);
-			model.addAttribute("name", loginSession.getName());
 			model.addAttribute("user", loginSession);
 			return "my_page";
 		} else {
@@ -65,9 +63,12 @@ public class IndexController {
 	
 	@RequestMapping("/delete")
 	public String delete() {
-		//TODO DBからユーザ情報を削除
-		userMapper.deletedById(loginSession.getId());
-		return "index";
+		int result = userMapper.deletedById(loginSession.getId());
+		if(result > 0) {
+			return "index";
+		} else {
+			//TODO アラート
+			return "my_page";
+		}
 	}
-	
 }

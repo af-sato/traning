@@ -7,7 +7,12 @@
 		SELECT * FROM user WHERE id = #{id} AND password = #{password}
 	</select>
 	
-	<select id="deletedById" resultType="com.example.membersite.model.domain.User">
+	<delete id="deletedById" resultType="int">
 		DELETE FROM user WHERE id = #{id}
-	</select>
+	</delete>
+	
+	<insert id="insert" resultType="int">
+		INSERT INTO user (id,password,name,age,mailaddress)
+		values (#{id},#{password},#{name},#{age},#{mailaddress})
+	</insert>
 </mapper>

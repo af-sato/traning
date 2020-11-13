@@ -12,5 +12,7 @@ public interface UserMapper {
 
 	List<User> findByIdAndPassword(@Param("id") String id,@Param("password") String password);
 
-	void deletedById(String id);
+	int deletedById(String id);
+
+	int insert(String id, String password, String name, int age, String mailaddress);
 }

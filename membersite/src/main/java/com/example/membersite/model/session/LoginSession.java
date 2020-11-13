@@ -1,7 +1,6 @@
 package com.example.membersite.model.session;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -15,7 +14,7 @@ public class LoginSession implements Serializable {
 	private String id;
 	private String password;
 	private String name;
-	private Date birthday;
+	private int age;
 	private String mailaddress;
 	private boolean logined;
 
@@ -37,11 +36,11 @@ public class LoginSession implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getBirthday() {
-		return birthday;
+	public int getAge() {
+		return age;
 	}
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
+	public void setAge(int age) {
+		this.age = age;
 	}
 	public String getMailaddress() {
 		return mailaddress;
