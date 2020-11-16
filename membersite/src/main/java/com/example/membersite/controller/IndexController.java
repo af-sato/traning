@@ -26,7 +26,7 @@ public class IndexController {
 	
 	@RequestMapping("/")
 	public String index(Model model) {
-		if(loginSession.isLogined()) {
+		if(loginSession.isLoginFrag()) {
 			//TODO　ログインしてるユーザーの情報が表示されるようにする
 			model.addAttribute("user", loginSession);
 			return "my_page";
@@ -47,7 +47,7 @@ public class IndexController {
 			loginSession.setName(user.getName());
 			loginSession.setAge(user.getAge());
 			loginSession.setMailaddress(user.getMailaddress());
-			loginSession.setLogined(true);
+			loginSession.setLoginFrag(true);
 			model.addAttribute("user", loginSession);
 			return "my_page";
 		} else {
@@ -57,7 +57,7 @@ public class IndexController {
 	
 	@RequestMapping("/logout")
 	public String logout() {
-		loginSession.setLogined(false);
+		loginSession.setLoginFrag(false);
 		return "index";
 	}
 	

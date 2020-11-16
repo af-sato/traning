@@ -15,4 +15,6 @@ public interface UserMapper {
 	int deletedById(String id);
 
 	int insert(String id, String password, String name, int age, String mailaddress);
+	
+	int findById(String id);
 }

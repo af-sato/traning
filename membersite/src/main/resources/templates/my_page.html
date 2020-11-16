@@ -5,15 +5,48 @@
 <title>会員画面 | Memberサイト</title>
 </head>
 <body>
-	<span th:text="${name}"></span>
+	<header>
+		<span th:text="${name}"></span>
+	</header>
 
-	<h3>ユーザー情報</h3>
-	<table th:each="user:${user}">
-		<tr><td><label>氏名:</label></td><td><span th:text="${user.name}"></span></td></tr>
-		<tr><td><label>年齢:</label></td><td><span th:text="${user.age}">歳</span><td></tr> 
-		<tr><td><label>メールアドレス:</label></td><td><span th:text="${user.mailaddress}"></span></td></tr>
-		<tr><td><button onclick="location.href='/membersite/logout'">ログアウト</button></td></tr>
-		<tr><td><button onclick="location.href='/membersite/delete'">退会</button></td></tr>
-	</table>
+	<main>
+		<h3>ユーザー情報</h3>
+		<table th:each="user:${user}">
+			<tr>
+				<td>
+					<label>氏名:</label>
+				</td>
+				<td>
+					<span th:text="${user.name}"></span>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<label>年齢:</label>
+				</td>
+				<td>
+					<span th:text="${user.age}">歳</span>
+				<td>
+			</tr> 
+			<tr>
+				<td>
+					<label>メールアドレス:</label>
+				</td>
+				<td>
+					<span th:text="${user.mailaddress}"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<button onclick="location.href='/membersite/logout'">ログアウト</button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<button onclick="location.href='/membersite/delete'">退会</button>
+				</td>
+			</tr>
+		</table>
+	</main>
 </body>
 </html>

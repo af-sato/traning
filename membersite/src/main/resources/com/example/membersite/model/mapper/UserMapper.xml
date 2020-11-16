@@ -7,12 +7,15 @@
 		SELECT * FROM user WHERE id = #{id} AND password = #{password}
 	</select>
 	
-	<delete id="deletedById" resultType="int">
+	<delete id="deletedById">
 		DELETE FROM user WHERE id = #{id}
 	</delete>
 	
-	<insert id="insert" resultType="int">
-		INSERT INTO user (id,password,name,age,mailaddress)
-		values (#{id},#{password},#{name},#{age},#{mailaddress})
+	<insert id="insert">
+		INSERT INTO user (id,password,name,age,mailaddress) values (#{id},#{password},#{name},#{age},#{mailaddress})
 	</insert>
+	
+	<select id="findById">
+		SELECT * FROM user WHERE id = #{id}
+	</select>
 </mapper>

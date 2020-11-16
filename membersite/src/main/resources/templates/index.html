@@ -5,17 +5,17 @@
 <title>ログイン画面 | Memberサイト</title>
 </head>
 <body>
+	<header>
+	 <p>ログイン</p>
+	</header>
 
-<header>
- <p>ログイン</p>
-</header>
-
-<form name ="loginForm" method="post" action="/membersite/login">
-	<label>ユーザーID</label><input type="text" name="id" /><br>
-	<label>パスワード</label><input type="password" name="password" /><br>
-	<button type="submit">ログイン</button><br>
-	<a href="/membersite/user/">新規登録</a>
-</form>
-
+	<main>
+		<form name ="loginForm" method="post" action="/membersite/login">
+			<div><label>ユーザーID</label><input type="text" name="id" /></div>
+			<div><label>パスワード</label><input type="password" name="password" /></div>
+			<div><button type="submit">ログイン</button></div>
+			<div><a href="/membersite/user/">新規登録</a></div>
+		</form>
+	</main>
 </body>
 </html>

@@ -16,7 +16,7 @@ public class LoginSession implements Serializable {
 	private String name;
 	private int age;
 	private String mailaddress;
-	private boolean logined;
+	private boolean loginFrag;
 
 	public String getId() {
 		return id;
@@ -48,10 +48,10 @@ public class LoginSession implements Serializable {
 	public void setMailaddress(String mailaddress) {
 		this.mailaddress = mailaddress;
 	}
-	public boolean isLogined() {
-		return logined;
+	public boolean isLoginFrag() {
+		return loginFrag;
 	}
-	public void setLogined(boolean logined) {
-		this.logined = logined;
+	public void setLoginFrag(boolean loginFrag) {
+		this.loginFrag = loginFrag;
 	}
 }
