@@ -16,5 +16,5 @@ public interface UserMapper {
 
 	int insert(String id, String password, String name, int age, String mailaddress);
 	
-	int findById(String id);
+	int findById(String ID);
 }

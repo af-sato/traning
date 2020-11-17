@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,9 +47,10 @@ public class UserController {
 					-- age;
 				}
 			}
+		
 		//TODO DTOにつめる
-		int result = userMapper.insert(form.getId(),form.getPassword(),form.getName(),age,form.getMailaddress());
-		if(result > 0) {
+		int count = userMapper.insert(form.getId(),form.getPassword(),form.getName(),age,form.getMailaddress());
+		if(count > 0) {
 			return "index";
 		} else {
 			//TODO アラート
@@ -55,10 +58,10 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(value = "/membersite/checkUserId", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean checkUserId(@RequestParam String id) {
-		int count = userMapper.findById(id);
+	@RequestMapping("/membersite/checkId")
+	public boolean checkId(@RequestBody String ID) {
+		int count = userMapper.findById(ID);
 		return count > 0;
 	}
 }

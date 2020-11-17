@@ -2,19 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"/>
+<link href="/style.css" rel="stylesheet" />
 <title>ログイン画面 | Memberサイト</title>
 </head>
 <body>
 	<header>
-	 <p>ログイン</p>
+	 <h1>ログイン</h1>
 	</header>
 
 	<main>
 		<form name ="loginForm" method="post" action="/membersite/login">
-			<div><label>ユーザーID</label><input type="text" name="id" /></div>
-			<div><label>パスワード</label><input type="password" name="password" /></div>
+			<div><label>ユーザーID：</label><input type="text" name="id" /></div>
+			<div><label>パスワード：</label><input type="password" name="password" /></div>
 			<div><button type="submit">ログイン</button></div>
-			<div><a href="/membersite/user/">新規登録</a></div>
+			<div><a href="/membersite/user/">新規登録はこちらから</a></div>
 		</form>
 	</main>
 </body>

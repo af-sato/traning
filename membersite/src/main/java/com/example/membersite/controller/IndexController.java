@@ -27,7 +27,6 @@ public class IndexController {
 	@RequestMapping("/")
 	public String index(Model model) {
 		if(loginSession.isLoginFrag()) {
-			//TODO　ログインしてるユーザーの情報が表示されるようにする
 			model.addAttribute("user", loginSession);
 			return "my_page";
 		} else {
@@ -48,11 +47,8 @@ public class IndexController {
 			loginSession.setAge(user.getAge());
 			loginSession.setMailaddress(user.getMailaddress());
 			loginSession.setLoginFrag(true);
-			model.addAttribute("user", loginSession);
-			return "my_page";
-		} else {
-			return "index";
-		}
+		} 
+		return "forward:/membersite/";
 	}
 	
 	@RequestMapping("/logout")
@@ -62,12 +58,12 @@ public class IndexController {
 	}
 	
 	@RequestMapping("/delete")
-	public String delete() {
-		int result = userMapper.deletedById(loginSession.getId());
-		if(result > 0) {
+	public String delete(Model model) {
+		int count = userMapper.deletedById(loginSession.getId());
+		if(count > 0) {
 			return "index";
 		} else {
-			//TODO アラート
+			model.addAttribute("count", count);
 			return "my_page";
 		}
 	}

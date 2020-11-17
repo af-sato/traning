@@ -2,25 +2,30 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
+<link href="/style.css" rel="stylesheet" />
 <title>新規登録画面 | Memberサイト</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+	<header>
+		<h1>新規登録画面</h1>
+	</header>
 	<main>
-		<form name ="userForm" method="post" action="/membersite/register">
+		<form id="userForm" name ="userForm" method="post" action="/membersite/register">
 			<div>
-				<label>ユーザーID</label><input type="text" id="input_userid" name="id" pattern=^([a-zA-Z0-9]{6})$ required />※入力必須、半角英数字(6文字)
-				<button id="checkUserId">重複チェック</button>
-				<!-- <span id="checkOK" class="hidden">OK</span> -->
-				<!-- <span id="checkError" class="hidden">入力されたユーザーIDは既に存在しています。別のユーザー名をお試しください。</span> -->
+				<label>ユーザーID：</label><input type="text" id="input_id" name="id" pattern=^([a-zA-Z0-9]{6})$ required />※入力必須、半角英数字(6文字)
+				<button id="checkId">重複チェック</button>
+				<span id="checkOK" style="display:none;">OK</span>
+				<span id="checkError" style="display:none;">入力されたユーザーIDは既に存在しています。別のユーザー名をお試しください。</span>
 			</div>
 			<div>
-				<label>パスワード</label><input type="password" name="password" pattern=^([a-zA-Z0-9!-/:-@¥[-`{-~]{8,})$ required />※入力必須、半角英数記号（8文字以上）
+				<label>パスワード：</label><input type="password" name="password" pattern=^([a-zA-Z0-9!-/:-@¥[-`{-~]{8,})$ required />※入力必須、半角英数記号（8文字以上）
 			</div>
 			<div>
-				<label>氏名</label><input type="text" name="name" required />※入力必須
+				<label>氏名：</label><input type="text" name="name" required />※入力必須
 			</div>
 			<div>
-				<label>生年月日</label>
+				<label>生年月日：</label>
 				<select id="select_year" name="year" required>
 					<option value="">-</option>
 				</select>年
@@ -32,13 +37,13 @@
 				</select>日 ※入力必須
 			</div>
 			<div>
-				<label>メールアドレス</label><input type="email" name="mailaddress" pattern=^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$ required />※入力必須
+				<label>メールアドレス：</label><input type="email" name="mailaddress" pattern=^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$ required />※入力必須
 			</div>
 			<div>
 				<button onclick="location.href='/membersite/'">戻る</button>
 			</div>
 			<div>
-				<button type="submit">登録</button>
+				<button id="registerBotton" type="submit">登録</button>
 			</div>
 		</form>
 	
@@ -69,28 +74,29 @@
 			}
 		</script>
 		<script>
-		
-			$('button#checkUserId').on('click' , () => {
-				let id = document.getElementById("input_userid").value;
-				if(isEmpty($(id).val())) return;
-				checkUserId(id);
+			$('button#checkId').on('click' , (event) => {
+				const ID = document.forms.userForm.input_id.value;
+				if(ID == "") {
+					alert('ユーザーIDを入力してください。');
+					return;
+				}
+				checkId(ID);
 			});
 			
-		function checkUserId(id){
-			$ajax({
+			function checkId(ID){
+			$.ajax({
 				type: 'POST',
-				url: '/membersite/checkUserId',
-				data: id,
+				url: '/membersite/checkId',
+				data: ID,
 				scriptCharset: 'utf-8'
 			})
 			.then((result) => {
 					if(result) {
-						//$('span#checkOK').prop('class','hidden');
-						//$('span#checkError').prop('class','info');
-						alert('入力されたユーザーIDは既に存在しています。別のユーザー名をお試しください。')
+						$('span#checkOK').hide();
+						$('span#checkError').show();
 					} else {
-						//$('span#checkOK').prop('class','info');
-						//$('span#checkError').prop('class','hidden');
+						$('span#checkOK').show();
+						$('span#checkError').hide();
 					}
 			}, () => {
 				alert('Error: ajax connection failed.');

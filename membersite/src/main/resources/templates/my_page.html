@@ -2,51 +2,30 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"/>
+<link href="/style.css" rel="stylesheet" />
 <title>会員画面 | Memberサイト</title>
 </head>
 <body>
-	<header>
-		<span th:text="${name}"></span>
-	</header>
-
 	<main>
-		<h3>ユーザー情報</h3>
-		<table th:each="user:${user}">
-			<tr>
-				<td>
-					<label>氏名:</label>
-				</td>
-				<td>
-					<span th:text="${user.name}"></span>
-				</td>
-			</tr>	
-			<tr>
-				<td>
-					<label>年齢:</label>
-				</td>
-				<td>
-					<span th:text="${user.age}">歳</span>
-				<td>
-			</tr> 
-			<tr>
-				<td>
-					<label>メールアドレス:</label>
-				</td>
-				<td>
-					<span th:text="${user.mailaddress}"></span>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<button onclick="location.href='/membersite/logout'">ログアウト</button>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<button onclick="location.href='/membersite/delete'">退会</button>
-				</td>
-			</tr>
-		</table>
+		<h1>ユーザー情報</h1>
+		<div id="user_info">
+			<div>
+				<label>氏名:</label><span th:text="${user.name}"></span>
+			</div>
+			<div>
+				<label>年齢:</label><span th:text="${user.age}">歳</span>
+			</div>
+			<div>
+				<label>メールアドレス:</label><span th:text="${user.mailaddress}"></span>
+			</div>
+			<div>
+				<button onclick="location.href='/membersite/logout'">ログアウト</button>
+			</div>
+			<div>
+				<button id="deleteBotton" onclick="location.href='/membersite/delete'">退会</button>
+				<span th:if="${count == 0}">退会できませんでした。</span>
+			</div>
+		</div>
 	</main>
 </body>
 </html>
