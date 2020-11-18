@@ -45,6 +45,7 @@
 			<div>
 				<button id="registerBotton" type="submit">登録</button>
 			</div>
+			<span th:text="${test}"></span>
 		</form>
 	
 		<script>
@@ -76,32 +77,34 @@
 		<script>
 			$('button#checkId').on('click' , (event) => {
 				const ID = document.forms.userForm.input_id.value;
+				let jsonString = {
+						'id': ID
+				};
 				if(ID == "") {
 					alert('ユーザーIDを入力してください。');
 					return;
 				}
-				checkId(ID);
+				function checkId(ID){
+				$.ajax({
+					type: 'POST',
+					url: '/membersite/checkId',
+					data: JSON.stringify(jsonString),
+					contentType: 'application/json',
+					scriptCharset: 'utf-8'
+				})
+				.then((result) => {
+						if(result) {
+							$('span#checkOK').hide();
+							$('span#checkError').show();
+						} else {
+							$('span#checkOK').show();
+							$('span#checkError').hide();
+						}
+				}, () => {
+					alert('Error: ajax connection failed.');
+				});
+				}
 			});
-			
-			function checkId(ID){
-			$.ajax({
-				type: 'POST',
-				url: '/membersite/checkId',
-				data: ID,
-				scriptCharset: 'utf-8'
-			})
-			.then((result) => {
-					if(result) {
-						$('span#checkOK').hide();
-						$('span#checkError').show();
-					} else {
-						$('span#checkOK').show();
-						$('span#checkError').hide();
-					}
-			}, () => {
-				alert('Error: ajax connection failed.');
-			});
-		}
 		</script>
 	</main>
 </body>
