@@ -47,8 +47,12 @@ public class IndexController {
 			loginSession.setAge(user.getAge());
 			loginSession.setMailaddress(user.getMailaddress());
 			loginSession.setLoginFrag(true);
-		} 
-		return "forward:/membersite/";
+			return "forward:/membersite/";
+		} else {
+			String loginErrorMessage = "ログインできませんでした。";
+			model.addAttribute("loginErrorMessage",loginErrorMessage);
+			return "index";
+		}
 	}
 	
 	@RequestMapping("/logout")

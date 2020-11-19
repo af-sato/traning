@@ -30,7 +30,7 @@ public class UserController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/membersite/checkId", method = RequestMethod.POST)
+	@RequestMapping(value = "/membersite/user/checkId", method = RequestMethod.POST)
 	public boolean checkId(@RequestBody String json) throws JsonMappingException, JsonProcessingException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = objectMapper.readTree(json);
@@ -65,7 +65,6 @@ public class UserController {
 		if(count > 0) {
 			return "index";
 		} else {
-			//TODO アラート
 			return "register_user";
 		}
 	}

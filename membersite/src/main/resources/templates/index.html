@@ -12,9 +12,9 @@
 
 	<main>
 		<form name ="loginForm" method="post" action="/membersite/login">
-			<div><label>ユーザーID：</label><input type="text" name="id" /></div>
-			<div><label>パスワード：</label><input type="password" name="password" /></div>
-			<div><button type="submit">ログイン</button></div>
+			<div><label>ユーザーID：</label><input type="text" name="id" pattern=^([a-zA-Z0-9]{6})$ required/></div>
+			<div><label>パスワード：</label><input type="password" name="password" pattern=^([a-zA-Z0-9!-/:-@¥[-`{-~]{8,})$ required/></div>
+			<div><button type="submit">ログイン</button><span id="loginErrorMessage" th:text="${loginErrorMessage}"></span></div>
 			<div><a href="/membersite/user/">新規登録はこちらから</a></div>
 		</form>
 	</main>
