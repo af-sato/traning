@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<link href="/style.css" rel="stylesheet" />
+<title>会員画面 | Memberサイト</title>
+</head>
+<body>
+	<main>
+		<h1>ユーザー情報</h1>
+		<div id="user_info">
+			<div>
+				<label>氏名:</label><span th:text="${user.name}"></span>
+			</div>
+			<div>
+				<label>年齢:</label><span th:text="${user.age}">歳</span>
+			</div>
+			<div>
+				<label>メールアドレス:</label><span th:text="${user.mailaddress}"></span>
+			</div>
+			<div>
+				<button onclick="location.href='/membersite/logout'">ログアウト</button>
+			</div>
+			<div>
+				<button id="deleteBotton" onclick="location.href='/membersite/delete'">退会</button>
+				<span id="deleteErrorMessage" th:if="${deleteErrorMessage != null}" th:text="${deleteErrorMessage}"></span>
+			</div>
+		</div>
+	</main>
+</body>
+</html>

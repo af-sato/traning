@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<link href="/style.css" rel="stylesheet" />
+<title>新規登録画面 | Memberサイト</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<header>
+		<h1>新規登録画面</h1>
+	</header>
+	<main>
+		<form id="userForm" name ="userForm" method="post" action="/membersite/register">
+			<div>
+				<label>ユーザーID：</label><input type="text" id="input_id" name="id" pattern=^([a-zA-Z0-9]{6})$ required />※入力必須、半角英数字(6文字)
+				<span id="checkError" style="display:none;">このIDは既に使用されています。</span>
+			</div>
+			<div>
+				<label>パスワード：</label><input type="password" name="password" pattern=^([a-zA-Z0-9!-/:-@¥[-`{-~]{8,})$ required />※入力必須、半角英数記号（8文字以上）
+			</div>
+			<div>
+				<label>氏名：</label><input type="text" name="name" required />※入力必須
+			</div>
+			<div>
+				<label>生年月日：</label>
+				<select id="select_year" name="year" required>
+					<option value="">-</option>
+				</select>年
+				<select id="select_month" name="month" required>
+					<option value="">-</option>
+				</select>月
+				<select id="select_day" name="day" required>
+					<option value="">-</option>
+				</select>日 ※入力必須
+			</div>
+			<div>
+				<label>メールアドレス：</label><input type="email" name="mailaddress" pattern=^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$ required />※入力必須
+			</div>
+			<div>
+				<button onclick="location.href='/membersite/'">戻る</button>
+			</div>
+			<div>
+				<button id="registerBotton" type="submit">登録</button>
+				<span id="registerErrorMessage" th:if="${registerErrorMessage != null}" th:text="${registerErrorMessage}"></span>
+			</div>
+		</form>
+	
+		<script>
+			const SELECT_YEAR = document.getElementById('select_year');
+		    const SELECT_MONTH = document.getElementById('select_month');
+		    const SELECT_DAY = document.getElementById('select_day');
+		
+		    for(var year = 1900; year < 2021; year++){
+		      	let op = document.createElement('option');
+		      	op.value = year;
+		      	op.text = year;
+		      	SELECT_YEAR.appendChild(op);
+			}
+				
+		    for(var month = 1; month <= 12; month++){
+		      	let op = document.createElement('option');
+		      	op.value = month;
+		      	op.text = month;
+		      	SELECT_MONTH.appendChild(op);
+			}
+			
+			for(var day = 1; day <= 31; day++){
+		      	let op = document.createElement('option');
+		      	op.value = day;
+		      	op.text = day;
+		      	SELECT_DAY.appendChild(op);
+			}
+		</script>
+		<script>
+			const FORM = document.forms.userForm;
+			FORM.id.addEventListener('change',function() {
+				const ID = document.getElementById("input_id").value;
+				let jsonString = {
+						'id': ID
+				};
+				if(ID == "") {
+					alert('ユーザーIDを入力してください。');
+					return;
+				}
+				$.ajax({
+					type: 'POST',
+					url: 'checkId',
+					data: JSON.stringify(jsonString),
+					contentType: 'application/json',
+					scriptCharset: 'utf-8'
+				})
+				.then((result) => {
+						if(result) {
+							$('span#checkError').show();
+						} else {
+							$('span#checkError').hide();
+						}
+				}, () => {
+					alert('Error: ajax connection failed.');
+				});
+			});
+		</script>
+	</main>
+</body>
+</html>
