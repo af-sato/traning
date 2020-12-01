@@ -17,6 +17,7 @@ public class LoginSession implements Serializable {
 	private int age;
 	private String mailaddress;
 	private boolean loginFrag;
+	private String message;
 
 	public String getId() {
 		return id;
@@ -53,5 +54,11 @@ public class LoginSession implements Serializable {
 	}
 	public void setLoginFrag(boolean loginFrag) {
 		this.loginFrag = loginFrag;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

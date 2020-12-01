@@ -23,7 +23,7 @@
 			</div>
 			<div>
 				<button id="deleteBotton" onclick="location.href='/membersite/delete'">退会</button>
-				<span th:if="${count == 0}">退会できませんでした。</span>
+				<span id="deleteErrorMessage" th:if="${deleteErrorMessage != null}" th:text="${deleteErrorMessage}"></span>
 			</div>
 		</div>
 	</main>

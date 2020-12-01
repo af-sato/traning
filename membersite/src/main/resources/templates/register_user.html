@@ -42,8 +42,8 @@
 			</div>
 			<div>
 				<button id="registerBotton" type="submit">登録</button>
+				<span id="registerErrorMessage" th:if="${registerErrorMessage != null}" th:text="${registerErrorMessage}"></span>
 			</div>
-			<span th:text="${test}"></span>
 		</form>
 	
 		<script>

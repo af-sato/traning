@@ -7,6 +7,10 @@
 		SELECT * FROM user WHERE id = #{id} AND password = #{password}
 	</select>
 	
+	<select id="findByLoginUserId" resultType="com.example.membersite.model.domain.User">
+		SELECT * FROM user WHERE id = #{id}
+	</select>
+	
 	<delete id="deletedById">
 		DELETE FROM user WHERE id = #{id}
 	</delete>
@@ -15,7 +19,7 @@
 		INSERT INTO user (id,password,name,age,mailaddress) values (#{id},#{password},#{name},#{age},#{mailaddress})
 	</insert>
 	
-	<select id="findById" resultType="int">
-		SELECT * FROM user WHERE id = #{ID}
+	<select id="findById" resultType="_int">
+		SELECT count(*) FROM user WHERE id = #{id}
 	</select>
 </mapper>

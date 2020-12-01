@@ -6,15 +6,19 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.membersite.model.domain.User;
+import com.example.membersite.model.dto.RegisterDto;
+
 
 @Mapper
 public interface UserMapper {
 
-	List<User> findByIdAndPassword(@Param("id") String id,@Param("password") String password);
+	List<User> findByIdAndPassword(String id,String password);
+	
+	List<User> findByLoginUserId(String id);
 
 	int deletedById(String id);
 
-	int insert(String id, String password, String name, int age, String mailaddress);
+	int insert(RegisterDto registerDto);
 	
-	int findById(String ID);
+	int findById(@Param("id") String ID);
 }

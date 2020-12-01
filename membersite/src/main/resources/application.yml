@@ -12,7 +12,7 @@ mybatis:
     mapUnderscoreToCamelCase: true
 
 logging:
-  level:
+  level: 
     org:
       springframework: WARN
     '[com.example.membersite.model.mapper]': WARN
